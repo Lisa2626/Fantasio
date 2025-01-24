@@ -10,24 +10,30 @@ Clone the repository
 
 You can clone the Fantasio repository directly from GitHub using the following command:
 
-git clone https://github.com/Lisa2626/Fantasio.git
+`git clone https://github.com/Lisa2626/Fantasio.git`
 
 This will create a local copy of the project on your machine.
 
 Install via pip:
-pip install ./Fantasio
+
+`pip install ./Fantasio`
+
 or
-pip install git+https://github.com/Lisa2626/Fantasio.git
+
+`pip install git+https://github.com/Lisa2626/Fantasio.git`
 
 Prerequisites:
 Make sure you have Python 3.x and pip installed on your machine. You can check this by running:
 
-python --version
-pip --version
+`python --version`
+
+`pip --version`
 
 Run package:
-python3 import Fantasio
-python3 python3.11 Fantasio/fantasio.py
+
+`python3 import Fantasio`
+
+`python3 python3.11 Fantasio/fantasio.py`
 
 How to use Fantasio?
 
@@ -53,10 +59,11 @@ Path to save the norm files:
 
 You can directly run the interactive window with:
 
-python3 python3.11 Fantasio/interactive.py
+`python3 python3.11 Fantasio/interactive.py`
 
 Or the automatic normalization:
-python3 python3.11 Fantasio/automatic.py
+
+`python3 python3.11 Fantasio/automatic.py`
 
 How to use the interactive window??
 
