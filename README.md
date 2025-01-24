@@ -1,5 +1,4 @@
 # Fantasio
-<<<<<<< HEAD
 Normalisation tool for SPIRou spectra
 =======
 A tool for normalizing stellar spectra, with an interactive GUI. Made for SPIRou data.
