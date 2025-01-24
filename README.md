@@ -67,9 +67,17 @@ Or the automatic normalization:
 
 How to use the interactive window??
 
-....
+You can use the "Previous" button to go to the previous order and the "Next" button to view the next order. To complete the normalization, you need to check all 49 orders. When you click "Next" on the last order, the procedure is complete, and the _norm.fits file is created.
 
-<img width="1061" alt="Screenshot 2024-03-14 at 11 03 00" src="https://github.com/user-attachments/assets/d9a7acc1-19ae-47dc-a803-9e4bd1e3e9ee" />
+You can use the slider to adjust the parameters and see how they affect the normalization. "Degree" and "Knots" are used for spline interpolation. The sigma clipping can be adjusted above and below the curve, and the number of iterations determines how many times the sigma clipping is applied.
+
+
+<img width="1341" alt="2" src="https://github.com/user-attachments/assets/6bd3fdfa-1a19-4f9f-834c-2be5a1385f2c" />
+  
+The "Select Range" button allows you to select a region on the normalization window to remove from the spectra. If you make a mistake, you can use the "Reset" button. However, note that if you make multiple modifications, the "Reset" button will only undo the last modification, so be careful. Emission lines can be removed to improve the normalization.
+
+
+<img width="1074" alt="3" src="https://github.com/user-attachments/assets/3dbe8f82-2a7f-4562-a147-d01847f33fb7" />
 
 
 Two improvements needs to be make: if you reset at order n but you click on the selected button at order n-1 its a problem, second you cannot reset two regions so be careful to check before adding another region to be selected because the reset button only work one time per order for now, this has to be improve.
