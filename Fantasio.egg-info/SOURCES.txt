@@ -1,0 +1,6 @@
+README.md
+setup.py
+Fantasio.egg-info/PKG-INFO
+Fantasio.egg-info/SOURCES.txt
+Fantasio.egg-info/dependency_links.txt
+Fantasio.egg-info/top_level.txt

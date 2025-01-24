@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: Fantasio
+Version: 0.1.0
+Summary: Fantasio, normalization tool for SPIRou .fits file
+Author: Lisa Drouglazet
+Author-email: lisa.drouglazet@univ-grenoble-alpes.fr
+Requires-Python: >=3.6
