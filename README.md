@@ -33,11 +33,11 @@ You also need: matplotlib, astropy, pandas, numpy, scipy, astropy
 If you don't have them, an error will appears and you can used pip install to install them.
 The best is to create a virtual environment with all of those library.
 
+- How to run the code?
+
 Once all is install, you can import the Fantasio package in python with the following line:
 
 `import Fantasio`
-
-- How to run the code?
 
 `Fantasio/fantasio.py`
 
@@ -57,8 +57,11 @@ If you run fantasio.py, you have to answer those questions:
 Choose normalisation mode ('interactive' or 'automatic'):
 
 If you choose interactive, 
+
 Name of the FITS file to normalise:
+
 Which flux do you want to normalize? FLUX ('A', 'B', or 'AB'):
+
 Path to the directory to save the file?
 
 Use one .fits file to check all order with the interactive window, choose the flux you want to normalize, and the path where you want the _norm.fits file to be saved. 
@@ -74,8 +77,11 @@ If you want to check for example the flux B, with the normalized parameters that
 The automatic.py code will ask you:
 
 Path to the directory containing FITS files to normalize:
+
 Path to the NORM parameters FITS file:
+
 Path to save the norm files:
+
 
 Enter the path where the data .fits file are, this folder need to contain all the t.fits to be normalized.
 Enter the path where the _norm.fits file created using the interactive.py and enter where you want to saved all the normalized files.
