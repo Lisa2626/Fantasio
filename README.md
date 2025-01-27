@@ -1,12 +1,10 @@
-# Fantasio
-Normalisation tool for SPIRou spectra
+# Fantasio: Normalisation tool for SPIRou spectra
 =======
-A tool for normalizing stellar spectra, with an interactive GUI. Made for SPIRou data.
-Normalization tool order by order, with option allowing the user to remove emission line, adapt the normalization parameters.
-Advice: the best is to use the interactive tool once and then use the automatic normalization.
 
-Installation:
-Clone the repository
+A tool for normalizing stellar spectra, using sigma-clipping method, made for SPIRou data.
+Normalization tool order by order, can be used with an interactive GUI with several option allowing the user to remove emission line, change sigma-clipping parameters and spline fitting parameters (degree and number of knots). Visualisation of the normalize spectra while changing the parameters.
+
+- Installation:
 
 You can clone the Fantasio repository directly from GitHub using the following command:
 
@@ -14,7 +12,7 @@ You can clone the Fantasio repository directly from GitHub using the following c
 
 This will create a local copy of the project on your machine.
 
-Install via pip:
+Or you can install via pip with:
 
 `pip install ./Fantasio`
 
@@ -22,64 +20,105 @@ or
 
 `pip install git+https://github.com/Lisa2626/Fantasio.git`
 
-Prerequisites:
-Make sure you have Python 3.x and pip installed on your machine. You can check this by running:
+
+- Prerequisites:
+
+Make sure you have Python >=3.6 and pip installed on your machine (make sure of the version). You can check this by running:
 
 `python --version`
 
 `pip --version`
 
-Run package:
+You also need: matplotlib, astropy, pandas, numpy, scipy, astropy
+If you don't have them, an error will appears and you can used pip install to install them.
+The best is to create a virtual environment with all of those library.
 
-`python3 import Fantasio`
+Once all is install, you can import the Fantasio package in python with the following line:
 
-`python3 python3.11 Fantasio/fantasio.py`
+`import Fantasio`
 
-How to use Fantasio?
+- How to run the code?
+
+`Fantasio/fantasio.py`
 
 Run the fantasio code, you have to choose between interactive or automatic normalisation.
-You can test with the .fits in the folder.
-If you run interactive, an interactive window with the spectra and the normalised spectra is showed. The user can modified the parameters to normalised the star. Degree of polynome, number of knots, sigma clipping up and down, number of iteration of the sigma clipping. The user can deleted some region of the spectra like emission lines for example, if a misclick is made you can use the reset buttom.
+
+- Which one to run?
+
+Advice: the best is to use the interactive tool once and then use the automatic normalization.
+Because to use to automatic normalization you need one normalize file with all the normalization parameters, those parameters will be apply for all the .fits file to normalize.
+
+- How to use Fantasio?
+
+Interactive first, You can test it with the test.fits in the folder.
 
 If you run fantasio.py, you have to answer those questions:
 
 Choose normalisation mode ('interactive' or 'automatic'):
-
-(To run the automatic normalization, you have to do the interactive one once to have a _norm.fits file.)
 
 If you choose interactive, 
 Name of the FITS file to normalise:
 Which flux do you want to normalize? FLUX ('A', 'B', or 'AB'):
 Path to the directory to save the file?
 
-If you choose automatic, 
+Use one .fits file to check all order with the interactive window, choose the flux you want to normalize, and the path where you want the _norm.fits file to be saved. 
+It will be possible to normalize all flux with the same normalization parameters (degree and number of knots for the spline fitting, sigma-clipping above and below, number of iterations, part where you delected the spectra) or to normalize separatly if your data are different (see more options part).
+
+Reminder: To run the automatic normalization, you have to do the interactive one once to have  _norm.fits file.)
+
+Once you normalize one .fits file, you can choose automatic, 
+
+Normalize automaticly all the .fits file in a folder with the parameters you used and saved in the _norm.fits, this will normalize all the flux (A,B,AB) with the same parameters.
+If you want to check for example the flux B, with the normalized parameters that you used for flux A it is possible with inter.py (see section more options).
+
+The automatic.py code will ask you:
+
 Path to the directory containing FITS files to normalize:
 Path to the NORM parameters FITS file:
 Path to save the norm files:
 
-You can directly run the interactive window with:
+Enter the path where the data .fits file are, this folder need to contain all the t.fits to be normalized.
+Enter the path where the _norm.fits file created using the interactive.py and enter where you want to saved all the normalized files.
 
-`python3 python3.11 Fantasio/interactive.py`
 
-Or the automatic normalization:
+You can directly run in python the interactive window with:
 
-`python3 python3.11 Fantasio/automatic.py`
+`Fantasio/interactive.py`
 
-How to use the interactive window??
+Or the automatic normalization with:
 
-You can use the "Previous" button to go to the previous order and the "Next" button to view the next order. To complete the normalization, you need to check all 49 orders. When you click "Next" on the last order, the procedure is complete, and the _norm.fits file is created.
+`Fantasio/automatic.py`
+
+
+- How to use the interactive window??
+
+If you run interactive, an interactive window with the spectra and the normalised spectra is showed. The user can modified the parameters to normalised the star with the sliders. Degree of polynome, number of knots, sigma clipping above the curve and below the curve and the number of iteration of the sigma clipping. The user can deleted some region of the spectra like emission lines for example using the selec range button, once you click on select range, go with your mouse on the window and select a region, if a misclick is made you can use the reset buttom.
+
+You can use the "Previous" button to go to the previous order and the "Next" button to view the next order. To complete the normalization, you need to check all 49 orders. When you click "Next" on the last order, the procedure is complete, and the _norm.fits file is created. Be carefull to not click on the next button if you did not finish the normalization.
 
 You can use the slider to adjust the parameters and see how they affect the normalization. "Degree" and "Knots" are used for spline interpolation. The sigma clipping can be adjusted above and below the curve, and the number of iterations determines how many times the sigma clipping is applied.
 
 
 <img width="1341" alt="2" src="https://github.com/user-attachments/assets/6bd3fdfa-1a19-4f9f-834c-2be5a1385f2c" />
   
-The "Select Range" button allows you to select a region on the normalization window to remove from the spectra. If you make a mistake, you can use the "Reset" button. However, note that if you make multiple modifications, the "Reset" button will only undo the last modification, so be careful. Emission lines can be removed to improve the normalization.
+The "Select Range" button allows you to select a region on the normalization window to remove from the spectra. If you make a mistake, you can use the "Reset" button. However, note that if you make multiple modifications, the "Reset" button will only undo the last modification, so be careful. Be careful to not use the reset button if you change order if you did not click on select range before ! Emission lines can be removed to improve the normalization.
 
 
 <img width="1074" alt="3" src="https://github.com/user-attachments/assets/3dbe8f82-2a7f-4562-a147-d01847f33fb7" />
 
 
-Two improvements needs to be make: if you reset at order n but you click on the selected button at order n-1 its a problem, second you cannot reset two regions so be careful to check before adding another region to be selected because the reset button only work one time per order for now, this has to be improve.
+- More options:
 
-(Interactive.py to do once --> the saving file contains parameters and you can apply them automatically to others observations of the star using automatic.py. If you want to check parameters with another observation you can used inter.py. Diff between auto and automatic and inter and interactive. If you want to check what is inside your norm file you can use read_norm_files.py and change what you want to read.
+`Fantasio/auto.py`
+
+To normalize automaticly only the flux you used in the interactive.
+If you normalized the flux A, you can run auto.py and normalize only A. (if you want the flux B and AB to be normalized with the same parameters run automatic.py).
+
+`Fantasio/inter.py`
+
+To check if the normalization changes between flux A, B and AB, this will plot the parameters saved in the _params_norm.fits file and visualed them with another param flux.
+
+
+- Improvements:
+
+Two improvements needs to be make: if you reset at order n but you click on the selected button at order n-1 it is a problem, second you cannot reset two regions so be careful to check before adding another region to be selected because the reset button only work one time per order for now, this has to be improve.
