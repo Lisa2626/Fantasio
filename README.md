@@ -1,8 +1,8 @@
-# Fantasio: Normalisation tool for SPIRou spectra
+# Fantasio: Normalization tool for SPIRou spectra
 =======
 
-A tool for normalizing stellar spectra, using sigma-clipping method, made for SPIRou data.
-Normalization tool order by order, can be used with an interactive GUI with several option allowing the user to remove emission line, change sigma-clipping parameters and spline fitting parameters (degree and number of knots). Visualisation of the normalize spectra while changing the parameters.
+A tool for normalizing stellar spectra using a sigma-clipping method, designed for SPIRou data.
+The normalization is performed order by order and can be used with an interactive GUI. Thus GUI offers several options, allowing the user to remove emission lines, adjust sigma-clipping parameters, and modify spline fitting parameters (degree and number of knots). Users can visualize the normalized spectra in real time while changing the parameters.
 
 - Installation:
 
@@ -23,19 +23,19 @@ or
 
 - Prerequisites:
 
-Make sure you have Python >=3.6 and pip installed on your machine (make sure of the version). You can check this by running:
+Ensure you have Python >=3.6 and pip installed on your machine (make sure of the version). You can check this by running:
 
 `python --version`
 
 `pip --version`
 
-You also need: matplotlib, astropy, pandas, numpy, scipy, astropy
+You also need the following libraries: matplotlib, astropy, pandas, numpy, scipy, astropy
 If you don't have them, an error will appears and you can used pip install to install them.
-The best is to create a virtual environment with all of those library.
+The best is to create a virtual environment with all of the required library.
 
 - How to run the code?
 
-Once all is install, you can import the Fantasio package in python with the following line:
+Once installed, you can import the Fantasio package in python with the following line:
 
 `import Fantasio`
 
@@ -45,14 +45,14 @@ Run the fantasio code, you have to choose between interactive or automatic norma
 
 - Which one to run?
 
-Advice: the best is to use the interactive tool once and then use the automatic normalization.
+You have to start with the interactive tool once and then you can use the automatic normalization.
 Because to use to automatic normalization you need one normalize file with all the normalization parameters, those parameters will be apply for all the .fits file to normalize.
 
 - How to use Fantasio?
 
-Interactive first, You can test it with the test.fits in the folder.
+Interactive mode, test the tool with the test.fits file provided in the folder.
 
-If you run fantasio.py, you have to answer those questions:
+You will be prompted to answer the following questions:
 
 Choose normalisation mode ('interactive' or 'automatic'):
 
@@ -69,9 +69,8 @@ It will be possible to normalize all flux with the same normalization parameters
 
 Reminder: To run the automatic normalization, you have to do the interactive one once to have  _norm.fits file.)
 
-Once you normalize one .fits file, you can choose automatic, 
+Once you have normalized one .fits file interactively, you can use the automatic mode to normalize all .fits files in a folder with the parameters you used and saved in the _norm.fits. The automatic mode will normalize all fluxes (A, B, AB) using the saved parameters.
 
-Normalize automaticly all the .fits file in a folder with the parameters you used and saved in the _norm.fits, this will normalize all the flux (A,B,AB) with the same parameters.
 If you want to check for example the flux B, with the normalized parameters that you used for flux A it is possible with inter.py (see section more options).
 
 The automatic.py code will ask you:
@@ -98,7 +97,14 @@ Or the automatic normalization with:
 
 - How to use the interactive window??
 
-If you run interactive, an interactive window with the spectra and the normalised spectra is showed. The user can modified the parameters to normalised the star with the sliders. Degree of polynome, number of knots, sigma clipping above the curve and below the curve and the number of iteration of the sigma clipping. The user can deleted some region of the spectra like emission lines for example using the selec range button, once you click on select range, go with your mouse on the window and select a region, if a misclick is made you can use the reset buttom.
+If you run interactive, an interactive window with the spectra and the normalised spectra is showed. You can adjust normalization parameters using sliders for:
+
+    Degree: Polynomial degree for spline fitting.
+    Knots: Number of knots for spline interpolation.
+    Sigma Clipping: Upper and lower thresholds for clipping.
+    Iterations: Number of sigma-clipping iterations.
+
+The user can deleted some region of the spectra like emission lines for example using the selec range button, once you click on select range, go with your mouse on the window and select a region, if a misclick is made you can use the reset buttom.
 
 You can use the "Previous" button to go to the previous order and the "Next" button to view the next order. To complete the normalization, you need to check all 49 orders. When you click "Next" on the last order, the procedure is complete, and the _norm.fits file is created. Be carefull to not click on the next button if you did not finish the normalization.
 
