@@ -68,7 +68,7 @@ def process_data(obsWl, obsFlux, obsI_fit, parameters_table):
 
         test2 = obsFlux[i] / fit
 
-        test2 = np.where((test2 >= 0) & (test2 <= 10), test2, np.nan)
+        #test2 = np.where((test2 >= 0) & (test2 <= 10), test2, np.nan)
 
         obsI_norm.append(test2)
         wave.append(obsWl[i])
@@ -110,6 +110,7 @@ def main():
                     obsFlux_A = hdu['FluxA'].data / hdu['BlazeA'].data
                     obsI_fit_A = hdul_modified['DEL_I_ARRAY_A'].data
                     parameters_table_A = hdul_modified['PARAMETERS_A'].data
+                    cont_A = hdul_modified['CONT_A'].data
                     obsI_norm_A = process_data(obsWl_A, obsFlux_A, obsI_fit_A, parameters_table_A)
 
                 if 'WaveB' in hdu and 'FluxB' in hdu and 'BlazeB' in hdu and 'DEL_I_ARRAY_B' in hdul_modified and 'PARAMETERS_B' in hdul_modified:
@@ -117,6 +118,7 @@ def main():
                     obsFlux_B = hdu['FluxB'].data / hdu['BlazeB'].data
                     obsI_fit_B = hdul_modified['DEL_I_ARRAY_B'].data
                     parameters_table_B = hdul_modified['PARAMETERS_B'].data
+                    cont_B = hdul_modified['CONT_B'].data
                     obsI_norm_B = process_data(obsWl_B, obsFlux_B, obsI_fit_B, parameters_table_B)
 
                 if 'WaveAB' in hdu and 'FluxAB' in hdu and 'BlazeAB' in hdu and 'DEL_I_ARRAY_AB' in hdul_modified and 'PARAMETERS_AB' in hdul_modified:
@@ -124,6 +126,7 @@ def main():
                     obsFlux_AB = hdu['FluxAB'].data / hdu['BlazeAB'].data
                     obsI_fit_AB = hdul_modified['DEL_I_ARRAY_AB'].data
                     parameters_table_AB = hdul_modified['PARAMETERS_AB'].data
+                    cont_AB = hdul_modified['CONT_AB'].data
                     obsI_norm_AB = process_data(obsWl_AB, obsFlux_AB, obsI_fit_AB, parameters_table_AB)
 
 
@@ -132,6 +135,7 @@ def main():
                     obsFlux_B = hdu['FluxB'].data / hdu['BlazeB'].data
                     obsI_fit_B = hdul_modified['DEL_I_ARRAY_A'].data
                     parameters_table_B = hdul_modified['PARAMETERS_A'].data
+                    cont_B = hdul_modified['CONT_A'].data
                     obsI_norm_B = process_data(obsWl_B, obsFlux_B, obsI_fit_B, parameters_table_B)
 
                 if 'WaveAB' in hdu and 'FluxAB' in hdu and 'BlazeAB' in hdu and not 'PARAMETERS_AB' in hdul_modified and not 'PARAMETERS_B' in hdul_modified:
@@ -139,6 +143,7 @@ def main():
                     obsFlux_AB = hdu['FluxAB'].data / hdu['BlazeAB'].data
                     obsI_fit_AB = hdul_modified['DEL_I_ARRAY_A'].data
                     parameters_table_AB = hdul_modified['PARAMETERS_A'].data
+                    cont_AB = hdul_modified['CONT_A'].data
                     obsI_norm_AB = process_data(obsWl_AB, obsFlux_AB, obsI_fit_AB, parameters_table_AB)
 
                 if 'WaveA' in hdu and 'FluxA' in hdu and 'BlazeA' in hdu and not 'PARAMETERS_A' in hdul_modified and not 'PARAMETERS_B' in hdul_modified:
@@ -146,6 +151,7 @@ def main():
                     obsFlux_A = hdu['FluxA'].data / hdu['BlazeA'].data
                     obsI_fit_A = hdul_modified['DEL_I_ARRAY_AB'].data
                     parameters_table_A = hdul_modified['PARAMETERS_AB'].data
+                    cont_A = hdul_modified['CONT_AB'].data
                     obsI_norm_A = process_data(obsWl_A, obsFlux_A, obsI_fit_A, parameters_table_A)
 
                 if 'WaveA' in hdu and 'FluxA' in hdu and 'BlazeA' in hdu and not 'PARAMETERS_A' in hdul_modified and not 'PARAMETERS_AB' in hdul_modified:
@@ -153,6 +159,7 @@ def main():
                     obsFlux_A = hdu['FluxA'].data / hdu['BlazeA'].data
                     obsI_fit_A = hdul_modified['DEL_I_ARRAY_B'].data
                     parameters_table_A = hdul_modified['PARAMETERS_B'].data
+                    cont_A = hdul_modified['CONT_B'].data
                     obsI_norm_A = process_data(obsWl_A, obsFlux_A, obsI_fit_A, parameters_table_A)
 
                 if 'WaveAB' in hdu and 'FluxAB' in hdu and 'BlazeAB' in hdu and not 'PARAMETERS_AB' in hdul_modified and not 'PARAMETERS_A' in hdul_modified:
@@ -160,6 +167,7 @@ def main():
                     obsFlux_AB = hdu['FluxAB'].data / hdu['BlazeAB'].data
                     obsI_fit_AB = hdul_modified['DEL_I_ARRAY_B'].data
                     parameters_table_AB = hdul_modified['PARAMETERS_B'].data
+                    cont_AB = hdul_modified['CONT_B'].data
                     obsI_norm_AB = process_data(obsWl_AB, obsFlux_AB, obsI_fit_AB, parameters_table_AB)
 
                 output_filename = os.path.splitext(os.path.basename(observationName))[0] + '_norm.fits'
@@ -173,6 +181,7 @@ def main():
                         hdul_new.append(fits.ImageHDU(obsI_fit_A, name='DEL_I_ARRAY_A'))
                         hdul_new.append(
                             fits.BinTableHDU.from_columns(fits.ColDefs(parameters_table_A), name='PARAMETERS_A'))
+                        hdul_new.append(fits.ImageHDU(cont_A, name='CONT_A'))
 
 
                     if obsI_norm_B is not None:
@@ -180,12 +189,14 @@ def main():
                         hdul_new.append(fits.ImageHDU(obsI_fit_B, name='DEL_I_ARRAY_B'))
                         hdul_new.append(
                             fits.BinTableHDU.from_columns(fits.ColDefs(parameters_table_B), name='PARAMETERS_B'))
+                        hdul_new.append(fits.ImageHDU(cont_B, name='CONT_B'))
 
                     if obsI_norm_AB is not None:
                         hdul_new.append(fits.ImageHDU(obsI_norm_AB, name='NORMAB'))
                         hdul_new.append(fits.ImageHDU(obsI_fit_AB, name='DEL_I_ARRAY_AB'))
                         hdul_new.append(
                             fits.BinTableHDU.from_columns(fits.ColDefs(parameters_table_A), name='PARAMETERS_AB'))
+                        hdul_new.append(fits.ImageHDU(cont_AB, name='CONT_AB'))
 
                     hdul_new.writeto(output_path, overwrite=True)
 

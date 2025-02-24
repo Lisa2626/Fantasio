@@ -240,7 +240,8 @@ def on_param_change(canvas, orders, order_num_var, obs_data_list, order_I_list, 
             fit_dict['obsWl_order'] = [[]for _ in range(orders)]
             fit_dict['obsI_order'] = [[] for _ in range(orders)]
             fit_dict['norm'] = [[] for _ in range(orders)]
-            fit_dict[f'test'] = [[] for _ in range(orders)]
+            fit_dict['test'] = [[] for _ in range(orders)]
+            fit_dict['result'] = [[] for _ in range(orders)]
 
         obsWl_order, obsI_order, fitIvals, test2, tck_clipped = fit_and_plot(
             obs_data_list[current_order_num],
@@ -252,8 +253,7 @@ def on_param_change(canvas, orders, order_num_var, obs_data_list, order_I_list, 
             num_iterations_value
         )
 
-        fit_dict['result'].append(order_I_list)  # to be delected?
-        fit_dict['wave'].append(obs_data_list)  # to be delected?
+        fit_dict['wave'].append(obs_data_list)
 
         Wl = fit_dict['Wl'][current_order_num]
         obsI = fit_dict['obsI'][current_order_num]
@@ -264,7 +264,7 @@ def on_param_change(canvas, orders, order_num_var, obs_data_list, order_I_list, 
         # save values in fit_dict
         fit_dict['obsWl_order'][current_order_num] = [obsWl_order]
         fit_dict['obsI_order'][current_order_num] = [obsI_order]
-
+        fit_dict['result'][current_order_num] = [test]
         fit_dict['norm'][current_order_num] = [norm]
         fit_dict['test'][current_order_num] = [tck_clipped]
 
@@ -620,6 +620,7 @@ def save(observationName, fit_dict, choice='AB', output_directory=None):
 
     norm_I_list = fit_dict['norm']  # I norm
     parameters = fit_dict['parameters']  # dict of params
+    obsIcont = fit_dict['result']
 
     # Calculate adjusted lists
     for i in range(len(fit_dict['obsWl_order'])):
@@ -641,6 +642,8 @@ def save(observationName, fit_dict, choice='AB', output_directory=None):
 
     obsI_norm = np.vstack(norm_I_list)  # create 2D array (49, 4088)
 
+    cont = np.vstack(obsIcont)
+
     # Open the original FITS file in read-only mode
     with fits.open(observationName, mode='readonly') as hdul_original:
         # Check if the output file already exists
@@ -657,6 +660,7 @@ def save(observationName, fit_dict, choice='AB', output_directory=None):
             hdul_new.pop(f'NORM_I_{choice}')
             hdul_new.pop(f'DEL_I_ARRAY_{choice}')
             hdul_new.pop(f'PARAMETERS_{choice}')
+            hdul_new.pop(f'CONT_{choice}')
 
         # Add new extensions for the given choice
         new_flux_hdu = fits.ImageHDU(obsI_norm, name=f'NORM_I_{choice}')
@@ -664,6 +668,9 @@ def save(observationName, fit_dict, choice='AB', output_directory=None):
 
         new_delI_hdu = fits.ImageHDU(new_delI, name=f'DEL_I_ARRAY_{choice}')
         hdul_new.append(new_delI_hdu)
+
+        new_cont_hdu = fits.ImageHDU(cont, name=f'CONT_{choice}')
+        hdul_new.append(new_cont_hdu)
 
         # Convert list of dictionaries to a Pandas DataFrame
         parameters_df = pd.DataFrame(parameters)

@@ -68,6 +68,8 @@ def process_data(obsWl, obsFlux, obsI_fit, parameters_table):
 
         test2 = obsFlux[i] / fit
 
+        #test2 = np.where((test2 >= 0) & (test2 <= 10), test2, np.nan)
+
         obsI_norm.append(test2)
         wave.append(obsWl[i])
 

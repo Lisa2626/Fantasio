@@ -13,7 +13,7 @@ def main():
     parser.add_argument('user_choice', nargs='?', type=str.upper, choices=['A', 'B', 'AB'],
                         help='Which flux do you want to normalize? Choose from A, B, or AB')  # arg for the flux
     parser.add_argument('output_directory', nargs='?', type=str, help="Path to the directory to save the file.")
-    # observationName = '2812667t.fits'
+    # observationName = '2812667t.fits' #V806tau
     args = parser.parse_args()
 
     if len(sys.argv) == 1:
