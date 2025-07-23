@@ -41,12 +41,12 @@ Once installed, you can import the Fantasio package in python with the following
 
 `Fantasio/fantasio.py`
 
-Run the fantasio code, you have to choose between interactive or automatic normalisation.
+Run the fantasio code from your terminal window, you have to choose between interactive or automatic normalisation.
 
 - Which one to run?
 
-You have to start with the interactive tool once and then you can use the automatic normalization.
-Because to use to automatic normalization you need one normalize file with all the normalization parameters, those parameters will be apply for all the .fits file to normalize.
+You have to start first with the interactive tool and then you can use the automatic normalization. The parameters used for each order will be stored in a .fits file and re used.
+To used automatic normalization you need one normalize file with all the normalization parameters, those parameters for the normalization will be apply for all the .fits file.
 
 - How to use Fantasio?
 
@@ -64,7 +64,7 @@ Which flux do you want to normalize? FLUX ('A', 'B', or 'AB'):
 
 Path to the directory to save the file?
 
-Use one .fits file to check all order with the interactive window, choose the flux you want to normalize, and the path where you want the _norm.fits file to be saved. 
+Use one .fits file to check all order with the interactive window, choose the flux you want to normalize (A or B), and the path where you want the _norm.fits file to be saved. 
 It will be possible to normalize all flux with the same normalization parameters (degree and number of knots for the spline fitting, sigma-clipping above and below, number of iterations, part where you delected the spectra) or to normalize separatly if your data are different (see more options part).
 
 Reminder: To run the automatic normalization, you have to do the interactive one once to have  _norm.fits file.)
@@ -81,12 +81,11 @@ Path to the NORM parameters FITS file:
 
 Path to save the norm files:
 
-
 Enter the path where the data .fits file are, this folder need to contain all the t.fits to be normalized.
 Enter the path where the _norm.fits file created using the interactive.py and enter where you want to saved all the normalized files.
 
 
-You can directly run in python the interactive window with:
+You can directly run the interactive window with:
 
 `Fantasio/interactive.py`
 
