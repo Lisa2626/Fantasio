@@ -1,6 +1,16 @@
+LICENSE
 README.md
-setup.py
+pyproject.toml
+Fantasio/GUI_functions.py
+Fantasio/__init__.py
+Fantasio/automatic.py
+Fantasio/fantasio.py
+Fantasio/fitting_GUI_functions.py
+Fantasio/interactive.py
+Fantasio/setup.py
 Fantasio.egg-info/PKG-INFO
 Fantasio.egg-info/SOURCES.txt
 Fantasio.egg-info/dependency_links.txt
+Fantasio.egg-info/entry_points.txt
+Fantasio.egg-info/requires.txt
 Fantasio.egg-info/top_level.txt

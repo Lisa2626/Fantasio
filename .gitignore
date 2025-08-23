@@ -1,0 +1,12 @@
+# Ignorer le dossier _build
+_build/
+
+# Ignorer le dossier .idea (utilisé par certains IDE comme IntelliJ)
+.idea/
+
+# Ignorer les fichiers .DS_Store (fichiers spécifiques à macOS)
+*.DS_Store
+
+# Ignorer les fichiers de l'egg-info (utilisé par Python)
+Fantasio.egg-info/
+

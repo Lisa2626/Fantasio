@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+#Tell setutools which folders or modules to use
+[tool.setuptools.packages.find]
+include = ["fantasio*"]  # ["*"] by default
+
+[project]
+name = "fantasio"
+version = "0.1.0"
+authors = [ {name="Lisa Drouglazet", email="lisa.drouglazet@univ-grenoble-alpes.fr"},
+]
+description = "Fantasio, normalization tool for SPIRou .fits file"
+readme = "README.md"
+requires-python = ">=3.6"
+license = "Apache-2.0"  #This identifier should match the LICENSE file
+license-files = ["LICEN[CS]E*"]
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "astropy",
+    "pandas", #Any other dependencies? Are these all needed?
+]
+
+#Generate command line tools from specific files
+[project.scripts]
+# the syntax is [name of new command] = "[python import path]:[exicutable function]"
+fantasio = "fantasio.fantasio:main"
+fantasio-interactive = "fantasio.interactive:main"
+fantasio-automatic = "fantasio.automatic:main"
