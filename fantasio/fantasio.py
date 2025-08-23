@@ -1,8 +1,8 @@
 #Code for normalizing SPIRou observations, choose between the interactive or the automatic mode to normalise SPIRou data
 
 import argparse
-import interactive
-import auto
+from . import interactive
+from . import auto
 
 # ------------------------------------------------------------------------------#
 

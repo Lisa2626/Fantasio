@@ -1,5 +1,5 @@
 #Code to plot the psrameters saved in the _params_norm.fits file and visualed them with another param flux
-import GUI_functions as ff
+from . import fitting_GUI_functions as ff
 import sys
 import argparse
 

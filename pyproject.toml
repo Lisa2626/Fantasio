@@ -8,7 +8,7 @@ include = ["fantasio*"]  # ["*"] by default
 
 [project]
 name = "fantasio"
-version = "0.1.0"
+version = "0.1.2"
 authors = [ {name="Lisa Drouglazet", email="lisa.drouglazet@univ-grenoble-alpes.fr"},
 ]
 description = "Fantasio, normalization tool for SPIRou .fits file"
