@@ -14,7 +14,7 @@ This will create a local copy of the project on your machine.
 
 Alternatively, you can install via pip with:
 
-`pip install ./Fantasio`
+`pip install ./fantasio`
 
 or
 
@@ -37,9 +37,9 @@ Tip: It is recommended to create a virtual environment and install all required 
 
 Once installed, you can import the Fantasio package in python with the following line:
 
-`import Fantasio`
+`import fantasio`
 
-`Fantasio/fantasio.py`
+`fantasio/fantasio.py`
 
 Run the fantasio code from your terminal window, you have to choose between interactive or automatic normalization.
 
@@ -96,9 +96,9 @@ Enter the path where the _norm.fits file created using the interactive.py and en
 
 You can run the scipts directly:
 
-`Fantasio/interactive.py`
+`fantasio/interactive.py`
 
-`Fantasio/automatic.py`
+`fantasio/automatic.py`
 
 
 - How to use the interactive window??
@@ -127,13 +127,13 @@ The "Select Range" button allows you to select a region on the normalization win
 
 - More options:
 
-`Fantasio/auto.py`
+`fantasio/auto.py`
 
 Use this to automatically normalize only the flux you selected during the interactive session (e.g., only A).
 If you normalized the flux A, you can run auto.py and normalize only A. (if you want the flux B and AB to be normalized with the same parameters run automatic.py).
 
 
-`Fantasio/inter.py`
+`fantasio/inter.py`
 
 This script allows you to compare normalization parameters across different fluxes (A, B, AB).
 It will plot the parameters saved in _params_norm.fits and let you visualize the differences.
